@@ -15,60 +15,53 @@ window.addEventListener(
 const layer_list = [
   {
     image: document.body.querySelector(".background"),
-    x_index: 0,
-    y_index: 0,
+    z_index: -1,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 0 }
   },
   {
     image: document.body.querySelector(".seagull-1"),
-    x_index: -0.4,
-    y_index: -0.2,
+    z_index: -0.15,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 0 }
   },
   {
     image: document.body.querySelector(".seagull-2"),
-    x_index: -0.4,
-    y_index: -0.15,
+    z_index: -0.2,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 0 }
   },
   {
     image: document.body.querySelector(".seagull-3"),
-    x_index: -0.4,
-    y_index: -0.15,
+    z_index: -0.3,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 0 }
   },
   {
     image: document.body.querySelector(".seagull-4"),
-    x_index: -0.3,
-    y_index: -0.1,
+    z_index: -0.5,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 0 }
   },
   {
     image: document.body.querySelector(".seagull-5"),
-    x_index: -0.3,
-    y_index: -0.1,
+    z_index: -0.6,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 0 }
   },
   {
     image: document.body.querySelector(".guy"),
-    x_index: -0.5,
-    y_index: -0.25,
+    z_index: 0.2,
     position: { x: 0, y: 0 },
     base_offset: { x: 0, y: 20 }
   }
 ];
 
-const touch_multiplier = 0.3;
-const motion_multiplier = 1.5;
+const touch_multiplier = 0.1;
+const motion_multiplier = 2;
 
 // This is optional, but prevents things from moving too far (because these are 2d images it can look broken)
-const max_offset = 23;
+const max_offset = 17;
 
 // Initialize variables for touch and mouse-based parallax
 
@@ -116,7 +109,7 @@ function drawCanvas() {
     layer.position = getOffset(layer);
 
     // Draw the layer into the canvas context
-    layer.image.style.transform = `translateX(${layer.position.x}px) translateY(${layer.position.y}px)`;
+    layer.image.style.transform = `translate3d(${layer.position.x}px, ${layer.position.y}px, 0)`;
   });
 
   // Loop this function! requestAnimationFrame is a special built in function that can draw to the canvas at 60 frames per second
@@ -128,14 +121,14 @@ function drawCanvas() {
 function getOffset(layer) {
   // Calculate the amount you want the layers to move based on touch or mouse input.
   // You can play with the touch_multiplier variable here. Depending on the size of your canvas you may want to turn it up or down.
-  const touch_offset_x = pointer.x * layer.x_index * touch_multiplier;
-  const touch_offset_y = pointer.y * layer.y_index * touch_multiplier;
+  const touch_offset_x = pointer.x * layer.z_index * touch_multiplier;
+  const touch_offset_y = pointer.y * layer.z_index * touch_multiplier;
 
   // Calculate the amount you want the layers to move based on the gyroscope
   // You can play with the motion_multiplier variable here. Depending on the size of your canvas you may want to turn it up or down.
 
-  const motion_offset_x = motion.x * layer.x_index * motion_multiplier;
-  const motion_offset_y = motion.y * layer.y_index * motion_multiplier;
+  const motion_offset_x = motion.x * layer.z_index * motion_multiplier;
+  const motion_offset_y = motion.y * layer.z_index * motion_multiplier;
 
   // Calculate the total offset for both X and Y
   // Total offset is a combination of touch and motion

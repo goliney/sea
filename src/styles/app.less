@@ -32,38 +32,37 @@ body {
 @height: 1343;
 @horizontal_aspect: @width / @height;
 @vertical_aspect: @height / @width;
-@gutter: 60px;
+@gutter: 10;
 
 .canvas {
   position: absolute;
-  width: calc(100vw - @gutter);
-  height: calc(100vw * @vertical_aspect - @gutter);
-  max-height: calc(100vh - @gutter);
-  max-width: calc(100vh * @horizontal_aspect - @gutter);
+  width: calc(100vw - unit(@gutter, vw));
+  height: calc(100vw * @vertical_aspect - unit(@gutter, vw));
+  max-height: calc(100vh - unit(@gutter, vh));
+  max-width: calc(100vh * @horizontal_aspect - unit(@gutter, vh));
   margin: auto;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   overflow: hidden;
-  border-radius: 7px;
   cursor: grab;
   //box-shadow: 1px 1px 0px 1px red, -1px -1px 0px 1px red;
 }
 
-.layer() {
+.layer(@extra: 0px) {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  width: calc(100% + 2 * @extra);
+  height: calc(100% + 2 * @extra);
+  top: -@extra;
+  left: -@extra;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .background {
-  .layer();
+  .layer(7%);
   background-image: url("../images/3_BG_v01.png");
 }
 
