@@ -1,3 +1,5 @@
+import TWEEN from "@tweenjs/tween.js";
+
 const loader = document.body.querySelector(".loader");
 const canvas = document.body.querySelector(".canvas");
 
@@ -101,8 +103,8 @@ function drawCanvas() {
   TWEEN.update();
 
   // Calculate how much the canvas should be rotated
-  var rotate_x = pointer.y * -0.15 + motion.y * -1.2;
-  var rotate_y = pointer.x * 0.15 + motion.x * 1.2;
+  const rotate_x = pointer.y * -0.15 + motion.y * -1.2;
+  const rotate_y = pointer.x * 0.15 + motion.x * 1.2;
 
   // Actually rotate the canvas
   canvas.style.transform =
@@ -126,23 +128,21 @@ function drawCanvas() {
 function getOffset(layer) {
   // Calculate the amount you want the layers to move based on touch or mouse input.
   // You can play with the touch_multiplier variable here. Depending on the size of your canvas you may want to turn it up or down.
-  var touch_offset_x = pointer.x * layer.x_index * touch_multiplier;
-  var touch_offset_y = pointer.y * layer.y_index * touch_multiplier;
+  const touch_offset_x = pointer.x * layer.x_index * touch_multiplier;
+  const touch_offset_y = pointer.y * layer.y_index * touch_multiplier;
 
   // Calculate the amount you want the layers to move based on the gyroscope
   // You can play with the motion_multiplier variable here. Depending on the size of your canvas you may want to turn it up or down.
 
-  var motion_offset_x = motion.x * layer.x_index * motion_multiplier;
-  var motion_offset_y = motion.y * layer.y_index * motion_multiplier;
+  const motion_offset_x = motion.x * layer.x_index * motion_multiplier;
+  const motion_offset_y = motion.y * layer.y_index * motion_multiplier;
 
   // Calculate the total offset for both X and Y
   // Total offset is a combination of touch and motion
-  var offset = {
+  const offset = {
     x: layer.base_offset.x + touch_offset_x + motion_offset_x,
     y: layer.base_offset.y + touch_offset_y + motion_offset_y
   };
-
-  console.log(offset.x);
 
   // Return the calculated offset to whatever requested it.
   return offset;
@@ -183,8 +183,8 @@ function pointerMove(event) {
   event.preventDefault();
   // Only run this if touch or mouse click has started
   if (moving === true) {
-    var current_x = 0;
-    var current_y = 0;
+    let current_x = 0;
+    let current_y = 0;
     // Check if this is a touch event
     if (event.type === "touchmove") {
       // Current position of touch
@@ -220,7 +220,7 @@ function endGesture() {
   // This removes any in progress tweens
   TWEEN.removeAll();
   // This starts the animation to reset the position of all layers when you stop moving them
-  var pointer_tween = new TWEEN.Tween(pointer)
+  new TWEEN.Tween(pointer)
     .to({ x: 0, y: 0 }, 300)
     .easing(TWEEN.Easing.Back.Out)
     .start();
