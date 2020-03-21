@@ -1,0 +1,98 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+  color: #696969;
+  font-size: 1em;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.loader {
+}
+
+@width: 1000;
+@height: 1343;
+@horizontal_aspect: @width / @height;
+@vertical_aspect: @height / @width;
+@gutter: 60px;
+
+.canvas {
+  position: absolute;
+  width: calc(100vw - @gutter);
+  height: calc(100vw * @vertical_aspect - @gutter);
+  max-height: calc(100vh - @gutter);
+  max-width: calc(100vh * @horizontal_aspect - @gutter);
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 7px;
+  cursor: grab;
+  //box-shadow: 1px 1px 0px 1px red, -1px -1px 0px 1px red;
+}
+
+.layer() {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.background {
+  .layer();
+  background-image: url("../images/3_BG_v01.png");
+}
+
+.seagull-1 {
+  .layer();
+  background-image: url("../images/2_SeaGull_1_v01.png");
+}
+
+.seagull-2 {
+  .layer();
+  background-image: url("../images/2_SeaGull_2_v01.png");
+}
+
+.seagull-3 {
+  .layer();
+  background-image: url("../images/2_SeaGull_3_v01.png");
+}
+
+.seagull-4 {
+  .layer();
+  background-image: url("../images/2_SeaGull_4_v01.png");
+}
+
+.seagull-5 {
+  .layer();
+  background-image: url("../images/2_SeaGull_5_v01.png");
+}
+
+.guy {
+  .layer();
+  background-image: url("../images/1_Guy_v01.png");
+}

@@ -1,0 +1,17 @@
+{
+  "name": "sea",
+  "main": "dist/index.html",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "less": "^3.11.1",
+    "parcel": "^1.12.4",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "es6-tween": "^5.5.11"
+  }
+}
