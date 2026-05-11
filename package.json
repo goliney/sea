@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "less": "^3.11.1",
-    "parcel": "^2.8.2",
+    "parcel": "^2.16.4",
     "prettier": "^1.19.1"
   },
   "dependencies": {
